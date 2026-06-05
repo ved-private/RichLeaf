@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 const tabs = ["Daily", "Weekly", "Monthly", "Yearly"];
 function PieChart({ data, total }) {
   const canvasRef = useRef();
-  const colors = ["#7effad","#00ff5e","#008b33","#000000","#248148","#154d2a","#2ec264","#dcfce7","#93d724"];
+  const colors = ["#ff0000","#ff8c00","#fffb00","#00ff04","#00eeff","#002fff","#aa00ff","#ff00aa","#ffffff"];
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || data.length === 0) return;
@@ -76,7 +76,7 @@ export default function Report({ setPage, expenses, deleteExpense, categories })
     return acc;
   }, {});
   const catData = Object.values(byCategory).sort((a, b) => b.total - a.total);
-  const colors = ["#4ade80","#22c55e","#86efac","#bbf7d0","#166534","#15803d","#16a34a","#587362","#a3e635"];
+  const colors = ["#ff0000","#ff9900","#ffee00","#04ff00","#00eeff","#0008ff","#9500ff","#ff00b7","#ffffff"];
   const downloadPDF = async () => {
     setDownloading(true);
     try {
@@ -219,8 +219,7 @@ y += 20;      }
         doc.text("Spending Breakdown", margin, y);
         y += 6;
         const chartImg = canvas.toDataURL("image/png");
-        doc.addImage(chartImg, "PNG", W / 2 - 40, y, 80, 80);
-
+doc.addImage(chartImg, "PNG", margin, y, 70, 70);
 // Legend next to chart
 let ly = y + 8;
 catData.forEach((c, i) => {
@@ -229,11 +228,11 @@ catData.forEach((c, i) => {
   const col = colors[i % colors.length];
   const rgb = col === "#4ade80" ? [74,222,128] : col === "#22c55e" ? [34,197,94] : col === "#86efac" ? [134,239,172] : col === "#bbf7d0" ? [187,247,208] : col === "#166534" ? [22,101,52] : col === "#15803d" ? [21,128,61] : [22,163,74];
   doc.setFillColor(...rgb);
-  doc.circle(W / 2 + 26, ly + 2, 3, "F");
+doc.circle(margin + 76, ly + 2, 3, "F");
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
   doc.setTextColor(30, 50, 30);
-  doc.text(`${c.label.replace(/\p{Emoji}/gu, "").trim()} ${pct}%`, W / 2 + 32, ly + 3.5);
+doc.text(`${c.label.replace(/\p{Emoji}/gu, "").trim()} ${pct}%`, margin + 82, ly + 3.5);
   ly += 10;
 });
 y += 70;      }
