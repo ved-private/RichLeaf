@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth, provider, db } from "./Firebase";
+import { auth, provider, db } from "./firebase";
 import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, where } from "firebase/firestore";
 import Home from "./pages/Home";
