@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg: #0d1f0d;
+  --bg2: #152415;
+  --bg3: #1c301c;
+  --accent: #37ac62;
+  --accent2: #30b260;
+  --text: #ffffff;
+  --text2: #c4d4c4;
+  --text3: #7a9a7a;
+  --card: #152415;
+  --border: #2a422a;
+  --danger: #ff6b6b;
+  --shadow: rgba(0,0,0,0.4);
+  --clay-shadow: 6px 6px 0px #0a160a, 0 8px 32px rgba(0,0,0,0.5);
+  --clay-shadow-sm: 3px 3px 0px #0a160a, 0 4px 16px rgba(0,0,0,0.4);
+  --clay-accent-shadow: 6px 6px 0px #15803d, 0 8px 32px rgba(74,222,128,0.2);
+}
+
+.light {
+  --bg: #e8f5e9;
+  --bg2: #c8e6c9;
+  --bg3: #a5d6a7;
+  --accent: #2e7d32;
+  --accent2: #388e3c;
+  --text: #1a2e1a;
+  --text2: #2d4a2d;
+  --text3: #5a7a5a;
+  --card: #ffffff;
+  --border: #a5d6a7;
+  --danger: #e53935;
+  --shadow: rgba(0,0,0,0.15);
+  --clay-shadow: 5px 5px 0px #81c784, 0 8px 24px rgba(0,0,0,0.15);
+  --clay-shadow-sm: 3px 3px 0px #81c784, 0 4px 12px rgba(0,0,0,0.1);
+  --clay-accent-shadow: 5px 5px 0px #1b5e20, 0 8px 24px rgba(46,125,50,0.25);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+button { cursor: pointer; font-family: 'Nunito', inherit; }
+input { font-family: 'Nunito', inherit; }
+::-webkit-scrollbar { width: 0; }
+
+/* Clay card */
+.clay-card {
+  background: var(--card);
+  border-radius: 24px;
+  border: 2px solid var(--border);
+  box-shadow: var(--clay-shadow);
+}
+
+.clay-card-sm {
+  background: var(--card);
+  border-radius: 18px;
+  border: 2px solid var(--border);
+  box-shadow: var(--clay-shadow-sm);
+}
+
+.clay-btn {
+  border-radius: 18px;
+  border: 2px solid var(--border);
+  box-shadow: var(--clay-shadow-sm);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.clay-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.clay-btn-accent {
+  border-radius: 18px;
+  border: 2px solid #15803d;
+  box-shadow: var(--clay-accent-shadow);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.clay-btn-accent:active {
+  transform: translate(5px, 5px);
+  box-shadow: none;
+}
