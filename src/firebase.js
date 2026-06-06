@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkoh7MvZsVtXuc9a0aNVORu0gzC0qyk7I",
-  authDomain: "richleaf-c75bd.firebaseapp.com",
+  authDomain: "richleaf.vercel.app",
   projectId: "richleaf-c75bd",
   storageBucket: "richleaf-c75bd.firebasestorage.app",
   messagingSenderId: "510924443852",
