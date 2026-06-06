@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth, provider, db } from "./firebase";
-import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, where } from "firebase/firestore";
 import Home from "./pages/Home";
 import Record from "./pages/Record";
@@ -34,6 +34,15 @@ export default function App() {
   });
 
   useEffect(() => {
+    getRedirectResult(auth).then(result => {
+      if (result?.user) {
+        setUser(result.user);
+        syncFromFirebase(result.user);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) await syncFromFirebase(u);
@@ -53,7 +62,6 @@ export default function App() {
     localStorage.setItem("rl_categories", JSON.stringify(categories));
   }, [categories]);
 
-  // Auto sync when online
   useEffect(() => {
     const handleOnline = async () => {
       if (user) {
@@ -102,9 +110,10 @@ export default function App() {
 
   const handleGoogleLogin = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      await syncFromFirebase(result.user);
-    } catch (e) { console.log("Login failed", e); }
+      await signInWithRedirect(auth, provider);
+    } catch (e) {
+      console.log("Login failed", e);
+    }
   };
 
   const handleLogout = async () => {

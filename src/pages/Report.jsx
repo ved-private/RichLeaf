@@ -226,7 +226,7 @@ catData.forEach((c, i) => {
   if (i > 5) return;
   const pct = Math.round((c.total / total) * 100);
   const col = colors[i % colors.length];
-  const rgb = col === "#4ade80" ? [74,222,128] : col === "#22c55e" ? [34,197,94] : col === "#86efac" ? [134,239,172] : col === "#bbf7d0" ? [187,247,208] : col === "#166534" ? [22,101,52] : col === "#15803d" ? [21,128,61] : [22,163,74];
+  const rgb = col === "#ff0000" ? [74,222,128] : col === "#ff8400" ? [34,197,94] : col === "#eaff00" ? [134,239,172] : col === "#10ab0e" ? [187,247,208] : col === "#00ffe1" ? [22,101,52] : col === "#0015ff" ? [21,128,61] : [22,163,74];
   doc.setFillColor(...rgb);
 doc.circle(margin + 76, ly + 2, 3, "F");
   doc.setFont("helvetica", "normal");
