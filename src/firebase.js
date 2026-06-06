@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAkoh7MvZsVtXuc9a0aNVORu0gzC0qyk7I",
-  authDomain: "richleaf-c75bd.firebaseapp.com",
-  projectId: "richleaf-c75bd",
-  storageBucket: "richleaf-c75bd.firebasestorage.app",
-  messagingSenderId: "510924443852",
-  appId: "1:510924443852:web:679b8320e253b51958f269",
-  measurementId: "G-FBKG20HB89"
+  apiKey: "AIzaSyDnLpurHsoeajpvupmTq65BZ8mCQjezmVk",
+  authDomain: "richleaf-e8b87.firebaseapp.com",
+  projectId: "richleaf-e8b87",
+  storageBucket: "richleaf-e8b87.firebasestorage.app",
+  messagingSenderId: "976398924206",
+  appId: "1:976398924206:web:cb7d3a730753fed6e4f03f",
+  measurementId: "G-DK3GZVMVBY"
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth, provider, db } from "./firebase";
-import { signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, getRedirectResult, signOut, onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, where } from "firebase/firestore";
 import Home from "./pages/Home";
 import Record from "./pages/Record";
@@ -34,15 +34,17 @@ export default function App() {
   });
 
   useEffect(() => {
-    getRedirectResult(auth).then(result => {
-      if (result?.user) {
-        setUser(result.user);
-        syncFromFirebase(result.user);
-      }
-    });
-  }, []);
+    // Handle redirect result first
+    getRedirectResult(auth)
+      .then(async (result) => {
+        if (result?.user) {
+          setUser(result.user);
+          await syncFromFirebase(result.user);
+        }
+      })
+      .catch((e) => console.log("Redirect error:", e));
 
-  useEffect(() => {
+    // Auth state listener
     const unsub = onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) await syncFromFirebase(u);
@@ -109,13 +111,13 @@ export default function App() {
   };
 
   const handleGoogleLogin = async () => {
-    try {
-      await signInWithRedirect(auth, provider);
-    } catch (e) {
-      console.log("Login failed", e);
-    }
-  };
-
+  try {
+    const result = await signInWithPopup(auth, provider);
+    await syncFromFirebase(result.user);
+  } catch (e) {
+    console.log("Login failed", e);
+  }
+};
   const handleLogout = async () => {
     await signOut(auth);
     setUser(null);
